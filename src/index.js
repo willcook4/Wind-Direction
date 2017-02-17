@@ -4,7 +4,7 @@ var callAPI = require('./callAPI');
 
 exports.handler = function(event, context, callback) {
   var alexa = Alexa.handler(event, context);
-  // alexa.appId = 'amzn1.ask.skill.e1144999-5ad4-4887-b072-07d79d79697c';
+  alexa.appId = 'amzn1.ask.skill.e1144999-5ad4-4887-b072-07d79d79697c';
   alexa.registerHandlers(handlers);
   alexa.execute();
 };
@@ -21,8 +21,8 @@ var handlers = {
   },
 
   'UserLocationIntent': function(){
-    // var yourLocation = this.event.request.intent.slots.userlocation.value;
-    var yourLocation = 'London';
+    var yourLocation = this.event.request.intent.slots.userLocation.value;
+    // var yourLocation = 'London'; // For testing
 
     callAPI.getDegFromAPI_GET(yourLocation, ((deg, speed, errorMsg) => {
 
@@ -81,9 +81,17 @@ var handlers = {
             wordDirection = 'West North West';
             break;
         }
-        var speedinMPH = (parseFloat(speed) * 2.236936).toFixed(2);
+        wordDirection = wordDirection.toString();
 
-        this.emit('sayIt', ':tell', 'It is blowing ' + speedinMPH + ' miles per hour, in a ' + wordDirection + ' direction in ' + yourLocation);
+        var speedinMPH = (parseFloat(speed) * 2.236936).toFixed(2);
+        speedinMPH = speedinMPH.toString();
+        yourLocation = yourLocation.toString();
+
+        var stringToSay = 'It is blowing ' + speedinMPH + ' miles per hour, in a ' + wordDirection + ' direction in ' + yourLocation;
+        stringToSay = stringToSay.toString();
+
+        console.log('Saying: ' + stringToSay);
+        this.emit('sayIt', ':tell', stringToSay);
       } else {
         // An error happened with the api call
         this.emit('sayIt', ':tell', errorMsg);

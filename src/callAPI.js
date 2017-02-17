@@ -21,25 +21,24 @@ module.exports = {
 
     request(options, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        // console.log('body', body);
-        // console.log('response', response);
-        // console.log('body', body);
         deg = body.list[0].wind.deg;
         speed = body.list[0].wind.speed;
-        console.log('api call sucessful:', response.statusCode);
-          // console.log(typeof(deg));
+        console.log(response.statusCode + ' : API call sucessful: '+ deg + ', ' + speed + ', ' + location);
+          // console.log(typeof(deg)); // Should be number
         callback(deg, speed, errorMsg);
-      } else if (error){
-        // console.log('An error happen error', JSON.stringify(error));
-        // deg = 'error: ' + JSON.stringify(error);
-        console.log('An error happened, try again later ', response.statusCode);
-        errorMsg = 'An error happened, try again later';
-      } else {
-        // deg = 'response: '+ JSON.stringify(response);
-        errorMsg = 'Got an error response, try again later ' + response.statusCode;
-        console.log('Error: ', response.statusCode);
+
+      } else if (error || response.statusCode !== 200) {
+        errorMsg = error + 'An error happened, try again later...';
+        console.log('An API error', response.statusCode + error);
         callback(deg, speed, errorMsg);
       }
+      //
+      // } else if (error) {
+      //
+      //   // deg = 'response: '+ JSON.stringify(response); // Too long for Alexa
+      //   errorMsg = 'Got an error response, try again later ' + error;
+      //   console.log('Error: ', response.statusCode);
+      //
     });
   }
 };
