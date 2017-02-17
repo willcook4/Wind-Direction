@@ -1,0 +1,9 @@
+UserLocationIntent i am in {userLocation}
+UserLocationIntent what is the wind like in {userLocation}
+UserLocationIntent is it windy in {userLocation}
+UserLocationIntent how windy is it in {userLocation}
+UserLocationIntent what is the current wind in {userLocation}
+UserLocationIntent how strong is the weather in {userLocation}
+UserLocationIntent {userLocation}
+
+RecapIntent recap

@@ -1,0 +1,11 @@
+# Folders #
+/node_modules/*
+
+# Packages #
+*.zip
+
+# Files #
+.DS_Store
+.DS_Store?
+
+

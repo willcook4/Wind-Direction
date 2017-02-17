@@ -1,0 +1,29 @@
+
+{
+  "intents": [
+    {
+      "intent": "UserLocationIntent",
+      "slots": [
+        {
+          "name": "userLocation",
+          "type": "AMAZON.GB_CITY"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "RecapIntent"
+    }
+  ]
+}
